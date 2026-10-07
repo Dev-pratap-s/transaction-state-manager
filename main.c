@@ -180,9 +180,85 @@ void listTransactions(void)
 
 
 
+// Main command loop
 int main(void)
 {
+    char command[20];
+    char id[50];
+    int amount;
+
     printf("Transaction State Manager\n");
+    printf("Enter commands:\n");
+
+    while (1) {
+
+        if (scanf("%19s", command) != 1) {
+            break;
+        }
+
+        if (strcmp(command, "CREATE") == 0) {
+
+            if (scanf("%49s %d", id, &amount) != 2) {
+                printf("Error: invalid CREATE command\n");
+                break;
+            }
+
+            createTransaction(id, amount);
+        }
+
+        else if (strcmp(command, "START") == 0) {
+
+            if (scanf("%49s", id) != 1) {
+                printf("Error: invalid START command\n");
+                break;
+            }
+
+            startTransaction(id);
+        }
+
+        else if (strcmp(command, "SUCCESS") == 0) {
+
+            if (scanf("%49s", id) != 1) {
+                printf("Error: invalid SUCCESS command\n");
+                break;
+            }
+
+            successTransaction(id);
+        }
+
+        else if (strcmp(command, "FAIL") == 0) {
+
+            if (scanf("%49s", id) != 1) {
+                printf("Error: invalid FAIL command\n");
+                break;
+            }
+
+            failTransaction(id);
+        }
+
+        else if (strcmp(command, "STATUS") == 0) {
+
+            if (scanf("%49s", id) != 1) {
+                printf("Error: invalid STATUS command\n");
+                break;
+            }
+
+            showStatus(id);
+        }
+
+        else if (strcmp(command, "LIST") == 0) {
+            listTransactions();
+        }
+
+        else if (strcmp(command, "EXIT") == 0) {
+            printf("Exiting...\n");
+            break;
+        }
+
+        else {
+            printf("Error: unknown command\n");
+        }
+    }
 
     return 0;
 }
