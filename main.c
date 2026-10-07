@@ -1,5 +1,8 @@
 #include <stdio.h>
 
+
+#define MAX_TRANSACTIONS 100
+
 // transaction states 
 typedef enum {
     CREATED,
@@ -15,7 +18,8 @@ typedef struct {
     TransactionState state;
 } Transaction;
 
-
+Transaction transactions[MAX_TRANSACTIONS];
+int transactionCount = 0;
 
 
 
