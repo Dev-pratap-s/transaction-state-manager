@@ -34,7 +34,26 @@ int findTransaction(const char *id)
     return -1;
 }
 
+//convert state into text
+const char *getStateName(TransactionState state)
+{
+    switch (state) {
+        case CREATED:
+            return "CREATED";
 
+        case PROCESSING:
+            return "PROCESSING";
+
+        case SUCCESS:
+            return "SUCCESS";
+
+        case FAILED:
+            return "FAILED";
+
+        default:
+            return "UNKNOWN";
+    }
+}
 
 
 
