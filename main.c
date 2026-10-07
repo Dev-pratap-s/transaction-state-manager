@@ -162,6 +162,22 @@ void showStatus(const char *id)
            getStateName(transactions[index].state));
 }
 
+// LIST
+void listTransactions(void)
+{
+    if (transactionCount == 0) {
+        printf("No transactions\n");
+        return;
+    }
+
+    for (int i = 0; i < transactionCount; i++) {
+        printf("%s | %d | %s\n",
+               transactions[i].id,
+               transactions[i].amount,
+               getStateName(transactions[i].state));
+    }
+}
+
 
 
 int main(void)
