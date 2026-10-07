@@ -84,6 +84,26 @@ void createTransaction(const char *id, int amount)
 }
 
 
+// START <id>
+void startTransaction(const char *id)
+{
+    int index = findTransaction(id);
+
+    if (index == -1) {
+        printf("Error: transaction not found\n");
+        return;
+    }
+
+    if (transactions[index].state != CREATED) {
+        printf("Error: invalid state change\n");
+        return;
+    }
+
+    transactions[index].state = PROCESSING;
+
+    printf("Transaction %s is PROCESSING\n", id);
+}
+
 
 
 
