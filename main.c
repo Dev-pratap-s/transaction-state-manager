@@ -56,6 +56,35 @@ const char *getStateName(TransactionState state)
 }
 
 
+// create <id> <amount>
+void createTransaction(const char *id, int amount)
+{
+    if (transactionCount >= MAX_TRANSACTIONS) {
+        printf("Error: transaction limit reached\n");
+        return;
+    }
+
+    if (amount <= 0) {
+        printf("Error: amount must be greater than 0\n");
+        return;
+    }
+
+    if (findTransaction(id) != -1) {
+        printf("Error: transaction ID already exists\n");
+        return;
+    }
+
+    strcpy(transactions[transactionCount].id, id);
+    transactions[transactionCount].amount = amount;
+    transactions[transactionCount].state = CREATED;
+
+    transactionCount++;
+
+    printf("Transaction %s created\n", id);
+}
+
+
+
 
 
 int main(void)
