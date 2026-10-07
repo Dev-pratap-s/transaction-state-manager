@@ -22,7 +22,17 @@ Transaction transactions[MAX_TRANSACTIONS];
 int transactionCount = 0;
 
 
+//find transaction by id
+int findTransaction(const char *id)
+{
+    for (int i = 0; i < transactionCount; i++) {
+        if (strcmp(transactions[i].id, id) == 0) {
+            return i;
+        }
+    }
 
+    return -1;
+}
 
 
 
