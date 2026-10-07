@@ -126,6 +126,28 @@ void successTransaction(const char *id)
 
 
 
+// FAIL 
+void failTransaction(const char *id)
+{
+    int index = findTransaction(id);
+
+    if (index == -1) {
+        printf("Error: transaction not found\n");
+        return;
+    }
+
+    if (transactions[index].state != PROCESSING) {
+        printf("Error: invalid state change\n");
+        return;
+    }
+
+    transactions[index].state = FAILED;
+
+    printf("Transaction %s is FAILED\n", id);
+}
+
+
+
 
 int main(void)
 {
