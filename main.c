@@ -56,7 +56,7 @@ const char *getStateName(TransactionState state)
 }
 
 
-// create <id> <amount>
+// create <id <amount>
 void createTransaction(const char *id, int amount)
 {
     if (transactionCount >= MAX_TRANSACTIONS) {
@@ -84,7 +84,7 @@ void createTransaction(const char *id, int amount)
 }
 
 
-// START <id>
+// START 
 void startTransaction(const char *id)
 {
     int index = findTransaction(id);
@@ -102,6 +102,26 @@ void startTransaction(const char *id)
     transactions[index].state = PROCESSING;
 
     printf("Transaction %s is PROCESSING\n", id);
+}
+
+// SUCCESS 
+void successTransaction(const char *id)
+{
+    int index = findTransaction(id);
+
+    if (index == -1) {
+        printf("Error: transaction not found\n");
+        return;
+    }
+
+    if (transactions[index].state != PROCESSING) {
+        printf("Error: invalid state change\n");
+        return;
+    }
+
+    transactions[index].state = SUCCESS;
+
+    printf("Transaction %s is SUCCESS\n", id);
 }
 
 
